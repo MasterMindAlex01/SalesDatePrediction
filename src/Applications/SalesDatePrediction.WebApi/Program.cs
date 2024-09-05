@@ -1,4 +1,9 @@
 
+using Microsoft.EntityFrameworkCore;
+using SalesDatePrediction.Application.Interfaces.Services;
+using SalesDatePrediction.Infrastructure.Contexts;
+using SalesDatePrediction.Infrastructure.Services;
+
 namespace SalesDatePrediction.WebApi
 {
     public class Program
@@ -8,6 +13,11 @@ namespace SalesDatePrediction.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<StoreDBContext>(options => options
+                    .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+            builder.Services.AddTransient<IOrderService, OrderService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

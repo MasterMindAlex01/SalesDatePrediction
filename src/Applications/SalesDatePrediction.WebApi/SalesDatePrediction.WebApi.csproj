@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\Infrastructure\SalesDatePrediction.Infrastructure\SalesDatePrediction.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

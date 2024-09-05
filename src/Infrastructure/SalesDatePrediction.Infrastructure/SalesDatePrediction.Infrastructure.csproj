@@ -12,11 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\SalesDatePrediction.Application\SalesDatePrediction.Application.csproj" />
     <ProjectReference Include="..\..\Core\SalesDatePrediction.Domain\SalesDatePrediction.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
