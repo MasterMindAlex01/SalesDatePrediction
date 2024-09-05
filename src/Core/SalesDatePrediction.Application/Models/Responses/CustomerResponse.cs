@@ -14,17 +14,19 @@ namespace SalesDatePrediction.Application.Models.Responses
             _orders = orders.OrderBy(x => x.Orderdate);
         }
         public string CustomerName { get; set; } = null!;
-        public DateTime LastOrderDate => _orders.LastOrDefault()!.Orderdate;
+        public DateTime LastOrderDate => _orders.Count() > 0 ? _orders.LastOrDefault()!.Orderdate : DateTime.UtcNow;
         public DateTime NextPredictedOrderDate
         {
             get
             {
-                var lastOrderDate = _orders.LastOrDefault()!.Orderdate;
+                if (_orders.Count() == 0) return DateTime.UtcNow;
+
+                DateTime lastOrderDate = _orders.LastOrDefault()!.Orderdate;
                 
                 double average = _orders.Where(x => x.Orderdate != lastOrderDate)
                     .Select(x => (x.Orderdate - _orders.First().Orderdate).TotalDays).Average();
 
-                var result = average + lastOrderDate.Day;
+                double result = average + lastOrderDate.Day;
 
                 return lastOrderDate.AddDays(result);   
                     

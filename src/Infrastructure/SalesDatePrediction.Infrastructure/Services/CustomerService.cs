@@ -23,7 +23,7 @@ namespace SalesDatePrediction.Infrastructure.Services
             var paginatedResult = await _context.Customers.Include(x => x.Orders)
                 .Select(x => new CustomerResponse(x.Orders.Select(y => new OrderCustomerResponse{ Orderdate = y.Orderdate}))
                 {
-                    CustomerName = x.Contactname,
+                    CustomerName = x.Companyname,
                 }).ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);
             
             return paginatedResult;
