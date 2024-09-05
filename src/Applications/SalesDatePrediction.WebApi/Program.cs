@@ -16,8 +16,11 @@ namespace SalesDatePrediction.WebApi
             builder.Services.AddDbContext<StoreDBContext>(options => options
                     .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddTransient<ICustomerService, CustomerService>();
             builder.Services.AddTransient<IEmployeeService, EmployeeService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
+            builder.Services.AddTransient<IShipperService, ShipperService>();
+            builder.Services.AddTransient<IProductService, ProductService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

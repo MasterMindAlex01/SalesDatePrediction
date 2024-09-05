@@ -6,23 +6,23 @@ using SalesDatePrediction.Shared.Wrapper;
 
 namespace SalesDatePrediction.Infrastructure.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class ProductService : IProductService
     {
         private readonly StoreDBContext _context;
 
-        public EmployeeService(StoreDBContext context)
+        public ProductService(StoreDBContext context)
         {
             _context = context;
         }
 
-        public async Task<Result<List<EmployeeResponse>>> GetAllEmployeeListAsync()
+        public async Task<Result<List<ProductResponse>>> GetAllProductListAsync()
         {
-            var employeeList = await _context.Employees.Select(x => new EmployeeResponse
+            var productList = await _context.Products.Select(x => new ProductResponse
             {
-                Empid = x.Empid,
-                FullName = $"{x.Firstname} {x.Lastname}"
+                ProductId = x.Productid,
+                ProductName = x.Productname,
             }).ToListAsync();
-            return await Result<List<EmployeeResponse>>.SuccessAsync(employeeList);
+            return await Result<List<ProductResponse>>.SuccessAsync(productList);
         }
     }
 }

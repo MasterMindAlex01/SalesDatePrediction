@@ -66,11 +66,8 @@ namespace SalesDatePrediction.Shared.Wrapper
 
     public class Result<T> : Result
     {
-        public Result()
-        {
-        }
 
-        public T Data { get; set; }
+        public T? Data { get; set; }
 
         public new static Result<T> Fail()
         {

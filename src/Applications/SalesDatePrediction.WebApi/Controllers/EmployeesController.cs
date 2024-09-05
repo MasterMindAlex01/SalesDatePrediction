@@ -5,19 +5,14 @@ namespace SalesDatePrediction.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeesController(IEmployeeService employeeService) : ControllerBase
     {
-        private readonly IEmployeeService _employeeService;
+        private readonly IEmployeeService _employeeService = employeeService;
 
-        public EmployeesController(IEmployeeService employeeService)
+        [HttpGet("GetAllEmployeeList")]
+        public async Task<ActionResult> GetAllEmployeeList()
         {
-            _employeeService = employeeService;
-        }
-
-        [HttpGet("GetEmployeeList")]
-        public async Task<ActionResult> GetEmployeeList()
-        {
-            var result = await _employeeService.GetEmployeeListAsync();
+            var result = await _employeeService.GetAllEmployeeListAsync();
             return Ok(result);
         }
     }

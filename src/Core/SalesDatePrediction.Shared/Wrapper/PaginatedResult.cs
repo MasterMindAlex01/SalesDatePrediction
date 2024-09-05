@@ -12,7 +12,7 @@ namespace SalesDatePrediction.Shared.Wrapper
 
         public List<T> Data { get; set; }
 
-        internal PaginatedResult(bool succeeded, List<T> data = default, List<string> messages = null, int count = 0, int page = 1, int pageSize = 10)
+        internal PaginatedResult(bool succeeded, List<T> data = default!, List<string> messages = null!, int count = 0, int page = 1, int pageSize = 10)
         {
             Data = data;
             CurrentPage = page;
@@ -24,12 +24,12 @@ namespace SalesDatePrediction.Shared.Wrapper
 
         public static PaginatedResult<T> Failure(List<string> messages)
         {
-            return new PaginatedResult<T>(false, default, messages);
+            return new PaginatedResult<T>(false, default!, messages);
         }
 
         public static PaginatedResult<T> Success(List<T> data, int count, int page, int pageSize)
         {
-            return new PaginatedResult<T>(true, data, null, count, page, pageSize);
+            return new PaginatedResult<T>(true, data, null!, count, page, pageSize);
         }
 
         public int CurrentPage { get; set; }

@@ -4,9 +4,8 @@ using SalesDatePrediction.Shared.Wrapper;
 
 namespace SalesDatePrediction.Application.Interfaces.Services
 {
-    public interface IOrderService
+    public interface ICustomerService
     {
-        Task<Result<int>> CreateOrderAsync(OrderRequest orderRequest);
-        Task<PaginatedResult<OrderResponse>> GetOrderPagedListByCustIdAsync(OrderQueryFilterRequest filterRequest);
+        Task<PaginatedResult<CustomerResponse>> GetSaleDatePredictionPagedListAsync(CustomerQueryFilterRequest filterRequest);
     }
 }
