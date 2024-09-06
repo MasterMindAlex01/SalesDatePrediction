@@ -20,11 +20,18 @@ namespace SalesDatePrediction.Infrastructure.Services
         public async Task<PaginatedResult<CustomerResponse>> GetSaleDatePredictionPagedListAsync(
             CustomerQueryFilterRequest filterRequest)
         {
-            var paginatedResult = await _context.Customers.Include(x => x.Orders)
+            var query = _context.Customers.Include(x => x.Orders).AsQueryable();
+
+            if (!string.IsNullOrEmpty( filterRequest.SearchName))
+            {
+                query = query.Where(x => x.Companyname.Contains(filterRequest.SearchName));
+            }
+
+            var paginatedResult = await query
                 .Select(x => new CustomerResponse(x.Orders.Select(y => new OrderCustomerResponse{ Orderdate = y.Orderdate}))
                 {
                     CustomerName = x.Companyname,
-                }).ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);
+                }).AsNoTracking().ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);
             
             return paginatedResult;
         }
