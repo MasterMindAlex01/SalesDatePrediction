@@ -6,7 +6,7 @@ namespace SalesDatePrediction.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CostumersController(ICustomerService customerService) : ControllerBase
+    public class CustomersController(ICustomerService customerService) : ControllerBase
     {
         private readonly ICustomerService _customerService = customerService;
         
