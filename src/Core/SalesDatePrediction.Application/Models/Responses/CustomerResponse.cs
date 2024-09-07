@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesDatePrediction.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,12 @@ namespace SalesDatePrediction.Application.Models.Responses
 {
     public class CustomerResponse
     {
-        private IEnumerable<OrderCustomerResponse> _orders = new List<OrderCustomerResponse>();
-        public CustomerResponse(IEnumerable<OrderCustomerResponse> orders)
+        private readonly IEnumerable<OrderCustomerResponse> _orders;
+        public CustomerResponse(IEnumerable<Order>? orders)
         {
-            _orders = orders.OrderBy(x => x.Orderdate);
+            _orders = orders != null && orders.Count() > 0 
+                ?  orders.Select(x => new OrderCustomerResponse { Orderdate = x.Orderdate}).OrderBy(x => x.Orderdate)
+                : new List<OrderCustomerResponse>();
         }
         public string CustomerName { get; set; } = null!;
         public DateTime LastOrderDate => _orders.Count() > 0 ? _orders.LastOrDefault()!.Orderdate : DateTime.UtcNow;

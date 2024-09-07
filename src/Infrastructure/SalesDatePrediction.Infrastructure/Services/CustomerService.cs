@@ -3,6 +3,7 @@ using SalesDatePrediction.Application.Extensions;
 using SalesDatePrediction.Application.Interfaces.Services;
 using SalesDatePrediction.Application.Models.Requests;
 using SalesDatePrediction.Application.Models.Responses;
+using SalesDatePrediction.Domain.Entities;
 using SalesDatePrediction.Infrastructure.Contexts;
 using SalesDatePrediction.Shared.Wrapper;
 
@@ -28,7 +29,10 @@ namespace SalesDatePrediction.Infrastructure.Services
             }
 
             var paginatedResult = await query
-                .Select(x => new CustomerResponse(x.Orders.Select(y => new OrderCustomerResponse{ Orderdate = y.Orderdate}))
+                .Select(x => x.Orders.Select(x => x.Orderid).Count() > 0 ? new CustomerResponse(x.Orders)
+                {
+                    CustomerName = x.Companyname,
+                }: new CustomerResponse(new List<Order>())
                 {
                     CustomerName = x.Companyname,
                 }).AsNoTracking().ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);

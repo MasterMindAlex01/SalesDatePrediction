@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SalesDatePrediction.Domain\SalesDatePrediction.Domain.csproj" />
     <ProjectReference Include="..\SalesDatePrediction.Shared\SalesDatePrediction.Shared.csproj" />
   </ItemGroup>
 
