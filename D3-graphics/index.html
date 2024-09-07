@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Barras Dinámico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Gráfico de Barras con D3.js</h1>
+  
+  <div>
+    <label for="sourceData">Source Data (Números separados por coma):</label>
+    <input type="text" id="sourceData" placeholder="Ej: 10,20,30,40,50">
+    <button id="updateDataBtn">Update Data</button>
+  </div>
+  
+  <div id="chart"></div>
+  
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
