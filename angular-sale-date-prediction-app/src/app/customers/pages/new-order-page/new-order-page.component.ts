@@ -30,19 +30,19 @@ export class NewOrderPageComponent implements OnInit {
 
   public orderForm = new FormGroup({
     empid:        new FormControl<number>(0),
-    orderdate:    new FormControl<Date>(new Date()),
-    requireddate: new FormControl<Date>(new Date()),
-    shippeddate:  new FormControl<Date>(new Date()),
+    orderdate:    new FormControl<Date|null>(null),
+    requireddate: new FormControl<Date|null>(null),
+    shippeddate:  new FormControl<Date|null>(null),
     shipperid:    new FormControl<number>(0),
-    freight:      new FormControl<number>(0),
+    freight:      new FormControl<number|null>(null),
     shipname:     new FormControl(''),
     shipaddress:    new FormControl(''),
     shipcity:     new FormControl(''),
     shipcountry:    new FormControl(''),
-    productid:    new FormControl(0),
-    unitprice:    new FormControl(0),
-    qty:          new FormControl(0),
-    discount:     new FormControl(0),
+    productid:    new FormControl<number|null>(null),
+    unitprice:    new FormControl<number|null>(null),
+    qty:          new FormControl<number|null>(null),
+    discount:     new FormControl<number|null>(null),
 
   });
 
@@ -93,10 +93,17 @@ export class NewOrderPageComponent implements OnInit {
 
     if ( this.orderForm.invalid ) return;
 
+    //console.log( this.currentOrder );
     this.orderService.addOrder( this.currentOrder )
       .subscribe(result => {
         console.log(result);
+        this.showSnackbar(`Order ${result.data} created by ${this.saleDatePrediction.customerName}`);
+        this.dialog.closeAll();
       });
+  }
+
+  onCloseDialog():void {
+    this.dialog.closeAll();
   }
 
   showSnackbar( message: string ):void {

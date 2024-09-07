@@ -3,197 +3,193 @@
 
 </mat-toolbar>
 
-<div class="grid">
+<mat-card>
+  <mat-card-content>
 
-  <div class="col-12">
-    <mat-card>
-      <mat-card-content>
+    <form class="grid" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
 
-        <form class="grid" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="col-12">
+        <h5>Order</h5>
+      </div>
 
-          <div class="col-12">
-            <h4>Order</h4>
-          </div>
-
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-select
-              formControlName="empid"
-              required
-              placeholder="employee*"
-            >
-              <mat-option *ngFor="let employee of employeeList"
-                [value]="employee.empid">
-                {{ employee.fullName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-select
-              formControlName="shipperid"
-              required
-              placeholder="shipper*"
-            >
-              <mat-option *ngFor="let shipper of shipperList"
-                [value]="shipper.shipperId">
-                {{ shipper.companyName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-12">
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="shipname"
-              placeholder="ship name*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="shipaddress"
-              placeholder="ship address*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="shipcity"
-              placeholder="ship city*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="text"
-              required
-              formControlName="shipcountry"
-              placeholder="Ship Country*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="date"
-              required
-              formControlName="orderdate"
-              placeholder="order date*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="date"
-              required
-              formControlName="requireddate"
-              placeholder="required date*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="date"
-              required
-              formControlName="shippeddate"
-              placeholder="shipped date*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-12">
-            <input
-              matInput
-              type="number"
-              required
-              formControlName="freight"
-              placeholder="freight*"
-            />
-          </mat-form-field>
-
-          <mat-divider class="mb-2"></mat-divider>
-
-          <div class="col-12">
-            <h4>Order Details</h4>
-          </div>
-
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-select
-              formControlName="productid"
-              required
-              placeholder="product*"
-            >
-              <mat-option *ngFor="let product of productList"
-                [value]="product.productId">
-                {{ product.productName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="number"
-              required
-              formControlName="unitprice"
-              placeholder="unit price*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="number"
-              required
-              formControlName="qty"
-              placeholder="Quantity*"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-4">
-            <input
-              matInput
-              type="number"
-              required
-              formControlName="discount"
-              placeholder="discount*"
-            />
-          </mat-form-field>
-
-        </form>
-
-        <div class="flex justify-content-between">
-
-          <span class="spacer"></span>
-          <button
-            mat-button
-            color="primary"
-          (click)="onSubmit()"
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-select
+          formControlName="empid"
+          required
+          placeholder="Employee*"
         >
-          close
-        </button>
-          <button
-            mat-button
-            color="primary"
-            (click)="onSubmit()"
-          >
-            save
-          </button>
-        </div>
+          <mat-option *ngFor="let employee of employeeList"
+            [value]="employee.empid">
+            {{ employee.fullName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      </mat-card-content>
-    </mat-card>
-  </div>
+      <mat-form-field appearance="outline" class="col-6">
+        <mat-select
+          formControlName="shipperid"
+          required
+          placeholder="Shipper*"
+        >
+          <mat-option *ngFor="let shipper of shipperList"
+            [value]="shipper.shipperId">
+            {{ shipper.companyName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-12">
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="shipname"
+          placeholder="Ship name*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="shipaddress"
+          placeholder="ship address*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="shipcity"
+          placeholder="Ship City*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="shipcountry"
+          placeholder="Ship Country*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <mat-label>Order Date*</mat-label>
+        <input matInput [matDatepicker]="orderdatepicker" formControlName="orderdate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconPrefix [for]="orderdatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #orderdatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <mat-label>Required Date*</mat-label>
+        <input matInput [matDatepicker]="requireddatepicker" formControlName="requireddate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconPrefix [for]="requireddatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #requireddatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <mat-label>Shipped Date*</mat-label>
+        <input matInput [matDatepicker]="shippeddatepicker" formControlName="shippeddate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconPrefix [for]="shippeddatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #shippeddatepicker></mat-datepicker>
+      </mat-form-field>
 
 
-</div>
+      <mat-form-field appearance="outline" class="col-12">
+        <span matTextPrefix>$ &nbsp;</span>
+        <input
+          matInput
+          type="number"
+          required
+          min="0"
+          formControlName="freight"
+          placeholder="Freight*"
+        />
+      </mat-form-field>
+
+      <mat-divider class="mb-2"></mat-divider>
+
+      <div class="col-12">
+        <h5>Order Details</h5>
+      </div>
+
+      <mat-form-field appearance="outline" class="col-12">
+        <mat-select
+          formControlName="productid"
+          required
+          placeholder="Product*"
+        >
+          <mat-option *ngFor="let product of productList"
+            [value]="product.productId">
+            {{ product.productName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <span matTextPrefix>$ &nbsp;</span>
+        <input
+          matInput
+          type="number"
+          required
+          min="0"
+          formControlName="unitprice"
+          placeholder="Unit Price*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <input
+          matInput
+          type="number"
+          required
+          min="0"
+          formControlName="qty"
+          placeholder="Quantity*"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-4">
+        <input
+          matInput
+          type="number"
+          required
+          min="0"
+          max="1"
+          formControlName="discount"
+          placeholder="Discount*"
+        />
+      </mat-form-field>
+
+    </form>
+
+    <div class="flex justify-content-between">
+
+      <span class="spacer"></span>
+      <button
+        mat-button
+        color="primary"
+      (click)="onCloseDialog()"
+    >
+    <span class="text-green">close</span>
+
+    </button>
+      <button
+        mat-button
+        color="primary"
+        (click)="onSubmit()"
+      >
+      <span class="text-green">save</span>
+      </button>
+    </div>
+
+  </mat-card-content>
+</mat-card>
