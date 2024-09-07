@@ -16,6 +16,8 @@ namespace SalesDatePrediction.Application.Models.Responses
                 ?  orders.Select(x => new OrderCustomerResponse { Orderdate = x.Orderdate}).OrderBy(x => x.Orderdate)
                 : new List<OrderCustomerResponse>();
         }
+        
+        public int Custid { get; set; }
         public string CustomerName { get; set; } = null!;
         public DateTime LastOrderDate => _orders.Count() > 0 ? _orders.LastOrDefault()!.Orderdate : DateTime.UtcNow;
         public DateTime NextPredictedOrderDate
@@ -35,5 +37,6 @@ namespace SalesDatePrediction.Application.Models.Responses
                     
             }
         }
+
     }
 }

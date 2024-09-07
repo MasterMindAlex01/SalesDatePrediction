@@ -70,6 +70,7 @@ namespace SalesDatePrediction.Infrastructure.Services
             return new Order()
             {
                 Orderid = 0,
+                Custid = orderRequest.Custid,
                 Empid = orderRequest.Empid,
                 Freight = orderRequest.Freight,
                 Orderdate = orderRequest.Orderdate,

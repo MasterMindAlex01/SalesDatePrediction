@@ -3,7 +3,7 @@ namespace SalesDatePrediction.Application.Models.Requests
 {
     public class OrderRequest
     {
-
+        public int Custid { get; set; }
         public int Empid { get; set; }
 
         public DateTime Orderdate { get; set; }
