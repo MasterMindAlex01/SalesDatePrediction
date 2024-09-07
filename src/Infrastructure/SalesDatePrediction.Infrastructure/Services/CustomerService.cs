@@ -29,15 +29,17 @@ namespace SalesDatePrediction.Infrastructure.Services
             }
 
             var paginatedResult = await query
-                .Select(x => x.Orders.Select(x => x.Orderid).Count() > 0 ? new CustomerResponse(x.Orders)
-                {
-                    Custid = x.Custid,
-                    CustomerName = x.Companyname,
-                }: new CustomerResponse(new List<Order>())
-                {
-                    Custid = x.Custid,
-                    CustomerName = x.Companyname,
-                }).AsNoTracking().ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);
+                .Select(x => x.Orders.Select(x => x.Orderid).Count() > 0 
+                    ? new CustomerResponse(x.Orders)
+                    {
+                        Custid = x.Custid,
+                        CustomerName = x.Companyname,
+                    }: new CustomerResponse(new List<Order>())
+                    {
+                        Custid = x.Custid,
+                        CustomerName = x.Companyname,
+                    }).AsNoTracking()
+                .ToPaginatedListAsync(filterRequest.PageNumber, filterRequest.PageSize);
             
             return paginatedResult;
         }
