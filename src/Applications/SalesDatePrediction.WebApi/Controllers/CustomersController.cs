@@ -11,7 +11,7 @@ namespace SalesDatePrediction.WebApi.Controllers
         private readonly ICustomerService _customerService = customerService;
         
         [HttpGet("GetSaleDatePredictionList")]
-        public async Task<ActionResult> GetSaleDatePredictionPagedListAsync(
+        public async Task<ActionResult> GetSaleDatePredictionPagedList(
             [FromQuery] CustomerQueryFilterRequest filterRequest)
         {
             var result = await _customerService.GetSaleDatePredictionPagedListAsync(filterRequest);
