@@ -51,7 +51,7 @@ y modficar su cadena de conexion con las credenciales locales sin modificar el n
 
         dotnet restore
    
-  3.4). Ejecutar el proyecto 
+  3.4) Ejecutar el proyecto 
   Para ejecutar tu proyecto, simplemente usa el siguiente comando:
 
         dotnet run
@@ -70,7 +70,7 @@ Para correr la aplicacion frontend volver a la raiz del proyecto y bucar la carp
 4) Abrir la aplicacion desde "http://localhost:4200/" verifique que la apliccio neste corriendo en este puerto
 5) y con esto puede usar frontend llamando al backend
 
-#APP - Graficos en D3
+# APP - Graficos en D3
 Para correr esta aplicacion basta en ir a la carpeta en la raiz del proyecto y buscar la carpeta llamada "D3-graphics" 
 y abrir el archivo index.html en el navegador para poder verificar el funcionamiento y para revisar el codigo lo pueden abrir desde 
 visual studio code de la carpeta.
