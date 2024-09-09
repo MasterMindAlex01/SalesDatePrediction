@@ -15,7 +15,6 @@
       <mat-form-field appearance="outline" class="col-6">
         <mat-select
           formControlName="empid"
-          required
           placeholder="Employee*"
         >
           <mat-option *ngFor="let employee of employeeList"
@@ -23,12 +22,16 @@
             {{ employee.fullName }}
           </mat-option>
         </mat-select>
+
+        <span *ngIf="isValidField('empid')"
+            class="text-red">
+            {{ getFieldError('empid') }}
+        </span>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-6">
         <mat-select
           formControlName="shipperid"
-          required
           placeholder="Shipper*"
         >
           <mat-option *ngFor="let shipper of shipperList"
@@ -36,47 +39,67 @@
             {{ shipper.companyName }}
           </mat-option>
         </mat-select>
+        <span *ngIf="isValidField('shipperid')"
+          class="text-red">
+          {{ getFieldError('shipperid') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-12">
         <input
           matInput
           type="text"
-          required
           formControlName="shipname"
           placeholder="Ship name*"
         />
+        <span *ngIf="isValidField('shipname')"
+          class="text-red">
+          {{ getFieldError('shipname') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-4">
         <input
           matInput
           type="text"
-          required
           formControlName="shipaddress"
           placeholder="ship address*"
         />
+        <span *ngIf="isValidField('shipaddress')"
+          class="text-red">
+          {{ getFieldError('shipaddress') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-4">
         <input
           matInput
           type="text"
-          required
           formControlName="shipcity"
           placeholder="Ship City*"
         />
+        <span *ngIf="isValidField('shipcity')"
+          class="text-red">
+          {{ getFieldError('shipcity') }}
+        </span>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-4">
         <input
           matInput
           type="text"
-          required
           formControlName="shipcountry"
           placeholder="Ship Country*"
         />
+        <span *ngIf="isValidField('shipcountry')"
+          class="text-red">
+          {{ getFieldError('shipcountry') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-4">
         <mat-label>Order Date*</mat-label>
@@ -84,6 +107,10 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconPrefix [for]="orderdatepicker"></mat-datepicker-toggle>
         <mat-datepicker #orderdatepicker></mat-datepicker>
+        <span *ngIf="isValidField('orderdate')"
+          class="text-red">
+          {{ getFieldError('orderdate') }}
+        </span>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-4">
@@ -92,7 +119,12 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconPrefix [for]="requireddatepicker"></mat-datepicker-toggle>
         <mat-datepicker #requireddatepicker></mat-datepicker>
+        <span *ngIf="isValidField('requireddate')"
+          class="text-red">
+          {{ getFieldError('requireddate') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-4">
         <mat-label>Shipped Date*</mat-label>
@@ -100,19 +132,24 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconPrefix [for]="shippeddatepicker"></mat-datepicker-toggle>
         <mat-datepicker #shippeddatepicker></mat-datepicker>
+        <span *ngIf="isValidField('shippeddate')"
+          class="text-red">
+          {{ getFieldError('shippeddate') }}
+        </span>
       </mat-form-field>
-
 
       <mat-form-field appearance="outline" class="col-12">
         <span matTextPrefix>$ &nbsp;</span>
         <input
           matInput
           type="number"
-          required
-          min="0"
           formControlName="freight"
           placeholder="Freight*"
         />
+        <span *ngIf="isValidField('freight')"
+          class="text-red">
+          {{ getFieldError('freight') }}
+        </span>
       </mat-form-field>
 
       <mat-divider class="mb-2"></mat-divider>
@@ -121,10 +158,10 @@
         <h5>Order Details</h5>
       </div>
 
+
       <mat-form-field appearance="outline" class="col-12">
         <mat-select
           formControlName="productid"
-          required
           placeholder="Product*"
         >
           <mat-option *ngFor="let product of productList"
@@ -132,41 +169,51 @@
             {{ product.productName }}
           </mat-option>
         </mat-select>
+        <span *ngIf="isValidField('productid')"
+          class="text-red">
+          {{ getFieldError('productid') }}
+        </span>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="col-4">
         <span matTextPrefix>$ &nbsp;</span>
         <input
           matInput
           type="number"
-          required
-          min="0"
           formControlName="unitprice"
           placeholder="Unit Price*"
         />
+        <span *ngIf="isValidField('unitprice')"
+          class="text-red">
+          {{ getFieldError('unitprice') }}
+        </span>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-4">
         <input
           matInput
           type="number"
-          required
-          min="0"
           formControlName="qty"
           placeholder="Quantity*"
         />
+        <span *ngIf="isValidField('qty')"
+          class="text-red">
+          {{ getFieldError('qty') }}
+        </span>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="col-4">
         <input
           matInput
           type="number"
-          required
-          min="0"
-          max="1"
           formControlName="discount"
           placeholder="Discount*"
         />
+        <span *ngIf="isValidField('discount')"
+          class="text-red">
+          {{ getFieldError('discount') }}
+        </span>
       </mat-form-field>
 
     </form>

@@ -79,8 +79,8 @@ export class HomePageComponent implements AfterViewInit  {
   onShowOrdersDialog( saleDatePrediction:SaleDatePrediction ){
     const dialogRef = this.dialog.open( OrdersDialogComponent, {
       data: saleDatePrediction,
-        height: '400px',
-        width: '600px',
+        height: '600px',
+        width: '80%',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -92,8 +92,8 @@ export class HomePageComponent implements AfterViewInit  {
   onShowNewOrderDialog( saleDatePrediction:SaleDatePrediction ){
     const dialogRef = this.dialog.open( NewOrderDialogComponent, {
         data: saleDatePrediction,
-        height: '400px',
-        width: '600px',
+        height: '600px',
+        width: '80%',
     });
 
     dialogRef.afterClosed().subscribe(result => {

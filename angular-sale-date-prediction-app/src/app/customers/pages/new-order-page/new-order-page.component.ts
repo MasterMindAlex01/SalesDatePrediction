@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { ShipperService } from '../../services/shipper.service';
 import { ShipperResponse } from '../../interfaces/shipper-response.interface';
 import { ProductService } from '../../services/product.service';
 import { ProductResponse } from '../../interfaces/product.interface';
+import { ValidatorsService } from '../../../shared/services/validators.service';
 
 @Component({
   selector: 'customers-new-order-page',
@@ -29,20 +30,20 @@ export class NewOrderPageComponent implements OnInit {
   public productList:  ProductResponse[] = [];
 
   public orderForm = new FormGroup({
-    empid:        new FormControl<number>(0),
-    orderdate:    new FormControl<Date|null>(null),
-    requireddate: new FormControl<Date|null>(null),
-    shippeddate:  new FormControl<Date|null>(null),
-    shipperid:    new FormControl<number>(0),
-    freight:      new FormControl<number|null>(null),
-    shipname:     new FormControl(''),
-    shipaddress:    new FormControl(''),
-    shipcity:     new FormControl(''),
-    shipcountry:    new FormControl(''),
-    productid:    new FormControl<number|null>(null),
-    unitprice:    new FormControl<number|null>(null),
-    qty:          new FormControl<number|null>(null),
-    discount:     new FormControl<number|null>(null),
+    empid:        new FormControl<number|null>(null, [ Validators.required ]),
+    orderdate:    new FormControl<Date|null>(null, [ Validators.required ]),
+    requireddate: new FormControl<Date|null>(null, [ Validators.required ]),
+    shippeddate:  new FormControl<Date|null>(null, [ Validators.required ]),
+    shipperid:    new FormControl<number|null>(null, [ Validators.required ]),
+    freight:      new FormControl<number|null>(null, [ Validators.required ]),
+    shipname:     new FormControl('', [ Validators.required ]),
+    shipaddress:    new FormControl('', [ Validators.required ]),
+    shipcity:     new FormControl('', [ Validators.required ]),
+    shipcountry:    new FormControl('', [ Validators.required ]),
+    productid:    new FormControl<number|null>(null, [ Validators.required ]),
+    unitprice:    new FormControl<number|null>(null, [ Validators.required ]),
+    qty:          new FormControl<number|null>(null, [ Validators.required ]),
+    discount:     new FormControl<number|null>(null, [ Validators.required ]),
 
   });
 
@@ -51,6 +52,7 @@ export class NewOrderPageComponent implements OnInit {
     private shipperService: ShipperService,
     private productService: ProductService,
     private orderService: OrderService,
+    private validatorsService: ValidatorsService,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
   ) {}
@@ -89,15 +91,26 @@ export class NewOrderPageComponent implements OnInit {
     return order;
   }
 
+  isValidField( field: string ) {
+    return this.validatorsService.isValidField( this.orderForm, field );
+  }
+
+  getFieldError( field: string ) {
+    return this.validatorsService.getFieldError( this.orderForm, field );
+  }
+
   onSubmit():void {
 
-    if ( this.orderForm.invalid ) return;
+    if ( this.orderForm.invalid ) {
+      this.orderForm.markAllAsTouched();
+      return;
+    }
 
     //console.log( this.currentOrder );
     this.orderService.addOrder( this.currentOrder )
       .subscribe(result => {
-        console.log(result);
         this.showSnackbar(`Order ${result.data} created by ${this.saleDatePrediction.customerName}`);
+        this.orderForm.reset();
         this.dialog.closeAll();
       });
   }
@@ -108,7 +121,7 @@ export class NewOrderPageComponent implements OnInit {
 
   showSnackbar( message: string ):void {
     this.snackbar.open( message, 'done', {
-      duration: 2500,
+      duration: 3000,
     })
   }
 }
