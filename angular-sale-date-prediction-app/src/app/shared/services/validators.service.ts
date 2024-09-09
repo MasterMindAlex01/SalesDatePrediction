@@ -25,6 +25,12 @@ export class ValidatorsService {
 
         case 'minlength':
           return `Mínimo ${ errors['minlength'].requiredLength } caracters.`;
+
+        case 'min':
+          return `Valor mínimo ${ errors['min'].min }.`;
+
+        case 'max':
+          return `Valor máximo ${ errors['max'].max }.`;
       }
     }
 

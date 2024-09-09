@@ -35,15 +35,15 @@ export class NewOrderPageComponent implements OnInit {
     requireddate: new FormControl<Date|null>(null, [ Validators.required ]),
     shippeddate:  new FormControl<Date|null>(null, [ Validators.required ]),
     shipperid:    new FormControl<number|null>(null, [ Validators.required ]),
-    freight:      new FormControl<number|null>(null, [ Validators.required ]),
+    freight:      new FormControl<number|null>(null, [ Validators.required, Validators.min(1) ]),
     shipname:     new FormControl('', [ Validators.required ]),
     shipaddress:    new FormControl('', [ Validators.required ]),
     shipcity:     new FormControl('', [ Validators.required ]),
     shipcountry:    new FormControl('', [ Validators.required ]),
     productid:    new FormControl<number|null>(null, [ Validators.required ]),
-    unitprice:    new FormControl<number|null>(null, [ Validators.required ]),
-    qty:          new FormControl<number|null>(null, [ Validators.required ]),
-    discount:     new FormControl<number|null>(null, [ Validators.required ]),
+    unitprice:    new FormControl<number|null>(null, [ Validators.required, Validators.min(1) ]),
+    qty:          new FormControl<number|null>(null, [ Validators.required, Validators.min(1) ]),
+    discount:     new FormControl<number|null>(null, [ Validators.required, Validators.min(0), Validators.max(1), ]),
 
   });
 
